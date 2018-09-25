@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AdressBook_WebAPI_CORE</name>
+    </assembly>
+    <members>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.ContactController.GetAll">
+            <summary>
+            Get a list of all contacts
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.ContactController.GetContact(System.Int32,System.String)">
+            <summary>
+            This will provide all values for a specific Id that is being passed.
+            </summary>
+            <param name="id"></param>
+            <param name="fields"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.ContactController.CreateNewContact(System.Int32,AdressBook_WebAPI_CORE.Data.ContactForCreation)">
+            <summary>
+            This will provide all values for a specific Id and an input query that is being passed.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.TodosController.GetTodos">
+            <summary>
+            The list of all the Todos
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.TodosController.GetTodo(System.Int32)">
+            <summary>
+            This will provide all values for a specific Id that is being passed.
+            </summary>
+            <param name="id">Mandatory</param>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.TodosController.PutTodo(System.Int32,AdressBook_WebAPI_CORE.Data.Todo)">
+            <summary>
+            This will update a Todo object by a specific Id
+            </summary>
+            <param name="id">Mandatory</param>
+            <param name="todo">The update information of the ToDo object.</param>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.TodosController.PostTodo(AdressBook_WebAPI_CORE.Data.Todo)">
+            <summary>
+            This will post a Todo object to insert values in the database.
+            </summary>
+            <param name="todo">Mandatory</param>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.TodosController.DeleteTodo(System.Int32)">
+            <summary>
+            This will delete a Todo object by a specific Id
+            </summary>
+            <param name="id">Mandatory</param>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.ValuesController.Get">
+            <summary>
+            The list of all the Values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.ValuesController.Get(System.Int32,System.String)">
+            <summary>
+            This will provide all values for a specific Id that is being passed.
+            </summary>
+            <param name="id">Mandatory</param>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.ValuesController.Post(AdressBook_WebAPI_CORE.Controller.ValuesController.Value)">
+            <summary>
+            This will post a Value object to insert new values.
+            </summary>
+            <param name="todo">Mandatory</param>
+            <returns></returns>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.ValuesController.Put(System.Int32,System.String)">
+            <summary>
+            This will update a Value by a specific Id
+            </summary>
+            <param name="id">Mandatory</param>
+            <param name="value">The update information by the value.</param>
+        </member>
+        <member name="M:AdressBook_WebAPI_CORE.Controller.ValuesController.Delete(System.Int32)">
+            <summary>
+            This will delete a Value object by a specific Id
+            </summary>
+            <param name="id">Mandatory</param>
+            <returns></returns>
+            
+        </member>
+    </members>
+</doc>
