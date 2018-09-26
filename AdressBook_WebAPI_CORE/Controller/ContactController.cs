@@ -13,6 +13,7 @@ using System.Collections;
 using Newtonsoft.Json.Linq;
 using Microsoft.EntityFrameworkCore.Internal;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace AdressBook_WebAPI_CORE.Controller
 {
@@ -198,7 +199,7 @@ namespace AdressBook_WebAPI_CORE.Controller
         /// <returns></returns>
 
         // POST: api/Contact/id
-        [HttpPost("{Id}")]
+        [HttpPost("{id}", Name = "CreateNewContact")]
         public IActionResult CreateNewContact(int id, [FromBody] ContactForCreation newContact)
         {
             var contact = ContactDataStore.Current._Contacts.FirstOrDefault(i => i.Id == id);
@@ -224,7 +225,7 @@ namespace AdressBook_WebAPI_CORE.Controller
                 Mobile = newContact.Mobile,
                 AdressInfo = new Contact.Adress
                 {
-                    Id = ++maxContactId,
+                    Id = maxContactId,
                     Street = newContact.AdressInfo.Street,
                     PostalCode = newContact.AdressInfo.PostalCode,
                     City = newContact.AdressInfo.City
@@ -266,10 +267,79 @@ namespace AdressBook_WebAPI_CORE.Controller
             return NoContent();
         }
 
+        // PUT: api/Contact/5
+        [HttpPatch("{id}")]
+        public IActionResult PartiallyUpdateContact(int id, [FromBody] JsonPatchDocument<ContactForUpdate> patchDoc)
+        {
+            if(patchDoc == null)
+            {
+                BadRequest();
+            }
+
+            var contact = ContactDataStore.Current._Contacts.FirstOrDefault(x => x.Id == id);
+
+            if(contact == null)
+            {
+                return NotFound();
+            }
+
+            var contactToPatch = new ContactForUpdate
+            {
+                Firstname = contact.Firstname,
+                Lastname = contact.Lastname,
+                Mobile = contact.Mobile,
+                DateOfBirth = contact.DateOfBirth,
+                AdressInfo = new ContactForUpdate.AdressForUpdate
+                {
+                    Street = contact.AdressInfo.Street,
+                    PostalCode = contact.AdressInfo.PostalCode,
+                    City = contact.AdressInfo.City
+                }
+            };
+
+            patchDoc.ApplyTo(contactToPatch, ModelState);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if(contactToPatch.Firstname == contactToPatch.Lastname)
+            {
+                ModelState.AddModelError("Lastname", "The provided lastname should be different from the name");
+            }
+
+            TryValidateModel(contactToPatch);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            contact.Firstname = contactToPatch.Firstname;
+            contact.Lastname = contactToPatch.Lastname;
+            contact.Mobile = contactToPatch.Mobile;
+            contact.DateOfBirth = contactToPatch.DateOfBirth;
+            contact.AdressInfo.Street = contactToPatch.AdressInfo.Street;
+            contact.AdressInfo.PostalCode = contactToPatch.AdressInfo.PostalCode;
+            contact.AdressInfo.City = contactToPatch.AdressInfo.City;
+
+            return NoContent();
+        }
+
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            var contact = ContactDataStore.Current._Contacts.FirstOrDefault(x => x.Id == id);
+            if(contact == null)
+            {
+                return NotFound();
+            }
+
+            ContactDataStore.Current._Contacts.Remove(contact);
+
+            return NoContent();
         }
 
     }
