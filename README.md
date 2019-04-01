@@ -3,7 +3,7 @@ Project for Learning Web.API with .NET CORE  (Please read the wiki tag)
 
 If you want to download the project and try to connect the database.
 
-1. Download the script for SQL-Server
+1. Download the script for SQL-Server - "adressbook_createtable.sql"
 2. Click to open it in SQL Server
 3. Check if the FILENAME has got the right path in row 7 and 9 and if you got the right version of SQL Server otherwise try to change it.
 ( NAME = N'AdressBook', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\AdressBook.mdf' , SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
