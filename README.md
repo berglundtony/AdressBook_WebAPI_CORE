@@ -12,7 +12,8 @@ If you want to download the project and try to connect the database.
 4. Execute the sqript
 5. If there is somthing wrong in the connection to the database check
 The connectionstring is in the file appsettings.json  maybe you have to change the DataSource to your instance of SQL-Server
-./SQLEXPRESS if you use the Microsogt SQL Express version.
+./SQLEXPRESS if you are using the Microsoft SQL Express version.
+
   "ConnectionStrings": {
     "DefaultConnection": "Data Source=.;Initial Catalog=AdressBook;Integrated Security=True"
   }
