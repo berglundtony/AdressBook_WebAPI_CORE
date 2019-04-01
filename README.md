@@ -11,7 +11,8 @@ If you want to download the project and try to connect the database.
 ( NAME = N'AdressBook_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\AdressBook_log.ldf' , SIZE = 2048KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 4. Execute the sqript
 5. If there is somthing wrong in the connection to the database check
-The connectionstring is in AppSetting
+The connectionstring is in the file appsettings.json  maybe you have to change the DataSource to your instance of SQL-Server
+./SQLEXPRESS if you use the Microsogt SQL Express version.
   "ConnectionStrings": {
     "DefaultConnection": "Data Source=.;Initial Catalog=AdressBook;Integrated Security=True"
   }
